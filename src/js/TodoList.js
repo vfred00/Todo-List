@@ -4,25 +4,20 @@ export class TodoList {
     this.listaTareas = [];    
   }
 
-
-  eliminar(tarea) {
-
-  }
-
-  eliminarTareasCompletadas(listaTareas) {
-
-  }
-
   eliminarTareasCompletadas() {
-    console.log('se han limpiado las tareas')
+    this.listaTareas = this.darPendientes();
   }
 
-  mostrarTareasPendientes() {
-
+  darPendientes() {    
+    return this.listaTareas.filter(i => !i.completada);
   }
 
-  mostrarTareasCompletadas() {
+  darCompletadas() {        
+    return this.listaTareas.filter(i => i.completada);
+  }
 
+  darListaTareas() {
+    return this.listaTareas;
   }
 
   añadir(tarea) {
@@ -33,6 +28,7 @@ export class TodoList {
   }
 
   darTarea(){
+    this.listaTareas[0].completada = true;
     return this.listaTareas[this.listaTareas.length-1];
   }
 
