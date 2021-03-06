@@ -31,6 +31,7 @@ function opcionesTarea(e){
   console.log(todoList.darListaTareas())
   ui.limpiarListaTareas();
   ui.mostrarListaTareas(todoList.darListaTareas());
+  ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
 }
 
 function agregarTarea(e) {
@@ -40,6 +41,8 @@ function agregarTarea(e) {
       ui.ponerHTML(todoList.darTarea());
     }
   }
+  ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
+  ui.borrarEntradaNuevaTarea('.new-todo');
 }
 
 function eliminarTareasCompletadas() {
@@ -60,6 +63,7 @@ function filtros(e) {
     mostrar = todoList.darCompletadas();
   }
   ui.mostrarListaTareas(mostrar);
+  ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
 }
 
 

@@ -46,4 +46,7 @@ export class TodoList {
     this.listaTareas = this.listaTareas.filter(i => i.nombre !== tarea);
   }
 
+  numeroTareasPendientes(){
+    return this.darPendientes().length;
+  }
 }

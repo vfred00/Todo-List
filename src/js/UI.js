@@ -9,7 +9,7 @@ export class UI {
     const contenedorTarea = document.createElement('div');
     contenedorTarea.innerHTML = `<li class="${completada ? 'completed' : ''}" data-id="abc">
     <div class="view">
-      <input class="toggle check" type="checkbox" ${completada ? 'checked':''}>
+      <input class="toggle check" type="checkbox" ${!completada ? 'checked':''}>
       <label>${nombre}</label>
       <button class="destroy"></button>
       </div>
@@ -31,5 +31,13 @@ export class UI {
       this.ponerHTML(i);  
       console.log(i)        
     });    
+  }
+
+  actualizaTotalTareasPendientes(numeroTareasPendientes, contenedor){
+    document.querySelector(contenedor).children[0].innerText = numeroTareasPendientes;    
+  }
+
+  borrarEntradaNuevaTarea(){
+    document.querySelector(contenedor).innerText = '';
   }
 }
