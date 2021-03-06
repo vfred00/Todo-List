@@ -9,7 +9,7 @@ export class UI {
     const contenedorTarea = document.createElement('div');
     contenedorTarea.innerHTML = `<li class="${completada ? 'completed' : ''}" data-id="abc">
     <div class="view">
-      <input class="toggle check" type="checkbox" checked>
+      <input class="toggle check" type="checkbox" ${completada ? 'checked':''}>
       <label>${nombre}</label>
       <button class="destroy"></button>
       </div>
@@ -30,7 +30,6 @@ export class UI {
     tareas.forEach(i => {
       this.ponerHTML(i);  
       console.log(i)        
-    });
-    console.log('ui mostarr');
+    });    
   }
 }
