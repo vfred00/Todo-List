@@ -12,11 +12,11 @@ document.querySelectorAll('.filtro').forEach(i => {
 document.querySelector('.new-todo').addEventListener('keypress', agregarTarea);
 document.querySelector('.clear-completed').addEventListener('click', eliminarTareasCompletadas);
 
-console.log(document.querySelector('li').addEventListener('click', opcionesTarea)
+console.log(document.querySelector('.todo-list').addEventListener('click', opcionesTarea)
 )
 
 
-function opcionesTarea(e){
+function opcionesTarea(e){  
   const opcion  = e.target.localName;
   const tarea = e.target.parentElement.children[1].textContent;
   console.log(tarea);
@@ -28,7 +28,9 @@ function opcionesTarea(e){
     todoList.eliminar(tarea);    
     console.log('eliminar tarea');
   }
-  console.log(todoList)
+  console.log(todoList.darListaTareas())
+  ui.limpiarListaTareas();
+  ui.mostrarListaTareas(todoList.darListaTareas());
 }
 
 function agregarTarea(e) {

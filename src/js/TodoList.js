@@ -1,18 +1,18 @@
 export class TodoList {
 
   constructor() {
-    this.listaTareas = [];    
+    this.listaTareas = [];
   }
 
   eliminarTareasCompletadas() {
     this.listaTareas = this.darPendientes();
   }
 
-  darPendientes() {    
+  darPendientes() {
     return this.listaTareas.filter(i => !i.completada);
   }
 
-  darCompletadas() {        
+  darCompletadas() {
     return this.listaTareas.filter(i => i.completada);
   }
 
@@ -24,26 +24,26 @@ export class TodoList {
     this.listaTareas.push({
       nombre: tarea,
       completada: false
-    });   
+    });
   }
 
-  darTarea(){
-    this.listaTareas[0].completada = true;
-    return this.listaTareas[this.listaTareas.length-1];
+  darTarea() {    
+    return this.listaTareas[this.listaTareas.length - 1];
   }
 
-  cambiarEstado(tarea){
-    if(this.listaTareas.some(i => i.nombre === tarea)){
-      this.listaTareas = this.listaTareas.map(i => {
-        if(i.nombre === tarea){
-          i.completada = false;
-        }
-      })
-    }
+  cambiarEstado(tarea) {
+    this.listaTareas = this.listaTareas.map(i => {
+      if (i.nombre === tarea) {
+        i.completada = i.completada ? false : true;        
+      }
+
+      return i;
+    })
+
   }
-  
-  eliminar(tarea){
-    return this.listaTareas.filter(i => i.nombre !== tarea);
+
+  eliminar(tarea) {
+    this.listaTareas = this.listaTareas.filter(i => i.nombre !== tarea);
   }
 
 }
