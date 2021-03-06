@@ -11,59 +11,60 @@ document.querySelectorAll('.filtro').forEach(i => {
 })
 document.querySelector('.new-todo').addEventListener('keypress', agregarTarea);
 document.querySelector('.clear-completed').addEventListener('click', eliminarTareasCompletadas);
+document.querySelector('.todo-list').addEventListener('click', opcionesTarea);
 
-console.log(document.querySelector('.todo-list').addEventListener('click', opcionesTarea)
-)
+document.addEventListener('DOMContentLoaded', ()=> {
+  todoList.cargarLocalStorage();
+  mostrar(todoList.darListaTareas());  
+})
 
 
 function opcionesTarea(e){  
   const opcion  = e.target.localName;
-  const tarea = e.target.parentElement.children[1].textContent;
-  console.log(tarea);
+  const tarea = e.target.parentElement.children[1].textContent;  
   if(opcion === 'input' ){    
-    todoList.cambiarEstado(tarea);    
-    console.log('cambiar estado tarea');
+    todoList.cambiarEstado(tarea);        
   }
   if(opcion === 'button' ){
     todoList.eliminar(tarea);    
-    console.log('eliminar tarea');
   }
-  console.log(todoList.darListaTareas())
+  mostrar(todoList.darListaTareas());
+  
+}
+
+const mostrar = listaTareas => {
   ui.limpiarListaTareas();
-  ui.mostrarListaTareas(todoList.darListaTareas());
+  ui.mostrarListaTareas(listaTareas);
   ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
+  todoList.actualizarLocalStorage();
 }
 
 function agregarTarea(e) {
   if (e.key == 'Enter') {
     if (e.target.value !== '') {
       todoList.añadir(e.target.value);
-      ui.ponerHTML(todoList.darTarea());
+      mostrar(todoList.darListaTareas());
       ui.borrarEntradaNuevaTarea('.new-todo');
-      ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
     }
   }
 }
 
 function eliminarTareasCompletadas() {
   todoList.eliminarTareasCompletadas();
-  ui.limpiarListaTareas();
-  ui.mostrarListaTareas(todoList.darListaTareas());
+  mostrar(todoList.darListaTareas());  
 }
 
 function filtros(e) {
   const accion = e.target.textContent;
-  let mostrar = [];
-  ui.limpiarListaTareas();
+  let resultado = [];
   if (accion === 'Todos') {
-    mostrar = todoList.darListaTareas();
+    resultado = todoList.darListaTareas();
   } else if (accion === 'Pendientes') {
-    mostrar = todoList.darPendientes();    
+    resultado = todoList.darPendientes();    
   } else {
-    mostrar = todoList.darCompletadas();
-  }
-  ui.mostrarListaTareas(mostrar);
-  ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
+    resultado = todoList.darCompletadas();
+  }  
+  mostrar(resultado);
 }
 
 

@@ -1,7 +1,8 @@
 export class TodoList {
 
   constructor() {
-    this.listaTareas = [];
+    // this.listaTareas = [];    
+    this.cargarLocalStorage();
   }
 
   eliminarTareasCompletadas() {
@@ -48,5 +49,13 @@ export class TodoList {
 
   numeroTareasPendientes(){
     return this.darPendientes().length;
+  }
+
+  actualizarLocalStorage(){
+    localStorage.setItem('listaTareas', JSON.stringify( this.listaTareas ));
+  }
+  cargarLocalStorage(){
+    const valor = localStorage.getItem('listaTareas');
+    this.listaTareas = valor ? JSON.parse(valor) : []; 
   }
 }
