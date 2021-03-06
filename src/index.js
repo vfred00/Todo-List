@@ -39,10 +39,10 @@ function agregarTarea(e) {
     if (e.target.value !== '') {
       todoList.añadir(e.target.value);
       ui.ponerHTML(todoList.darTarea());
+      ui.borrarEntradaNuevaTarea('.new-todo');
+      ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
     }
   }
-  ui.actualizaTotalTareasPendientes(todoList.numeroTareasPendientes(), '.todo-count');
-  ui.borrarEntradaNuevaTarea('.new-todo');
 }
 
 function eliminarTareasCompletadas() {
