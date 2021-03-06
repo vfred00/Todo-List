@@ -11,9 +11,24 @@ document.querySelectorAll('.filtro').forEach(i => {
 })
 document.querySelector('.new-todo').addEventListener('keypress', agregarTarea);
 document.querySelector('.clear-completed').addEventListener('click', eliminarTareasCompletadas);
-document.querySelector('.toggle').addEventListener('click', tareaCompletada);
-function tareaCompletada(e){
-  console.log(e.target)
+
+console.log(document.querySelector('li').addEventListener('click', opcionesTarea)
+)
+
+
+function opcionesTarea(e){
+  const opcion  = e.target.localName;
+  const tarea = e.target.parentElement.children[1].textContent;
+  console.log(tarea);
+  if(opcion === 'input' ){    
+    todoList.cambiarEstado(tarea);    
+    console.log('cambiar estado tarea');
+  }
+  if(opcion === 'button' ){
+    todoList.eliminar(tarea);    
+    console.log('eliminar tarea');
+  }
+  console.log(todoList)
 }
 
 function agregarTarea(e) {

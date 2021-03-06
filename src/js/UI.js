@@ -1,6 +1,5 @@
 export class UI {
   constructor() {
-    console.log('ui');
     this.contenedorTareas = document.querySelector('.todo-list');
   }
 
@@ -10,7 +9,7 @@ export class UI {
     const contenedorTarea = document.createElement('div');
     contenedorTarea.innerHTML = `<li class="${completada ? 'completed' : ''}" data-id="abc">
     <div class="view">
-      <input class="toggle" type="checkbox" checked>
+      <input class="toggle check" type="checkbox" checked>
       <label>${nombre}</label>
       <button class="destroy"></button>
       </div>

@@ -32,4 +32,18 @@ export class TodoList {
     return this.listaTareas[this.listaTareas.length-1];
   }
 
+  cambiarEstado(tarea){
+    if(this.listaTareas.some(i => i.nombre === tarea)){
+      this.listaTareas = this.listaTareas.map(i => {
+        if(i.nombre === tarea){
+          i.completada = false;
+        }
+      })
+    }
+  }
+  
+  eliminar(tarea){
+    return this.listaTareas.filter(i => i.nombre !== tarea);
+  }
+
 }
